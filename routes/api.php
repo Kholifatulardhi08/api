@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserApiController;
 use App\Http\Controllers\RoomApiController;
+use App\Http\Controllers\UnitApiController;
+use App\Http\Controllers\MealApiController;
+use App\Http\Controllers\DrinkApiController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,5 +43,26 @@ Route::group([
     Route::get('/rooms/{id}', [RoomApiController::class, 'show']);
     Route::put('/rooms/{id}', [RoomApiController::class, 'update']);
     Route::delete('/rooms/{id}', [RoomApiController::class, 'destroy']);
+
+    // API UNIT
+    Route::get('/units', [UnitApiController::class, 'index']);
+    Route::post('/units', [UnitApiController::class, 'store']);
+    Route::get('/units/{id}', [UnitApiController::class, 'show']);
+    Route::put('/units/{id}', [UnitApiController::class, 'update']);
+    Route::delete('/units/{id}', [UnitApiController::class, 'destroy']);
+
+    // API MEAL
+    Route::get('/meals', [MealApiController::class, 'index']);
+    Route::post('/meals', [MealApiController::class, 'store']);
+    Route::get('/meals/{id}', [MealApiController::class, 'show']);
+    Route::put('/meals/{id}', [MealApiController::class, 'update']);
+    Route::delete('/meals/{id}', [MealApiController::class, 'destroy']);
+
+    // API DRINK
+    Route::get('/drinks', [DrinkApiController::class, 'index']);
+    Route::post('/drinks', [DrinkApiController::class, 'store']);
+    Route::get('/drinks/{id}', [DrinkApiController::class, 'show']);
+    Route::put('/drinks/{id}', [DrinkApiController::class, 'update']);
+    Route::delete('/drinks/{id}', [DrinkApiController::class, 'destroy']);
 
 });
