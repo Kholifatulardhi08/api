@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserApiController;
+use App\Http\Controllers\RoomApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,4 +25,19 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
+
+    //API USER
+    Route::get('/users', [UserApiController::class, 'index']);
+    Route::post('/users', [UserApiController::class, 'store']);
+    Route::get('/users/{id}', [UserApiController::class, 'show']);
+    Route::put('/users/{id}', [UserApiController::class, 'update']);
+    Route::delete('/users/{id}', [UserApiController::class, 'destroy']);
+
+    //API ROOM
+    Route::get('/rooms', [RoomApiController::class, 'index']);
+    Route::post('/rooms', [RoomApiController::class, 'store']);
+    Route::get('/rooms/{id}', [RoomApiController::class, 'show']);
+    Route::put('/rooms/{id}', [RoomApiController::class, 'update']);
+    Route::delete('/rooms/{id}', [RoomApiController::class, 'destroy']);
+
 });
