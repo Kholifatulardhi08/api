@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Validator;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -23,17 +24,39 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request){
-    	$validator = Validator::make($request->all(), [
+
+        $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:6'
         ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+
+        if ($token = Auth::attempt($credentials)) {
+            // $request->session()->regenerate();
+            $user = User::where('email', $request['email'])->select('id', 'email', 'role', 'status_verified')->first()->toArray();
+
+            if($user['status_verified'] === 0){
+                return response()->json(["status" => Response::HTTP_UNAUTHORIZED, "message" => "you need to be approved"], Response::HTTP_UNAUTHORIZED);
+            }
+            
+            $user += ['jwt_token' => $token];
+
+            // return redirect()->intended('/home');
+            return response()->json($user, Response::HTTP_CREATED);
         }
-        if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-        return $this->createNewToken($token);
+        return response()->json(["status" => Response::HTTP_UNAUTHORIZED, "message" => "email/password wrong"], Response::HTTP_UNAUTHORIZED);
+
+    	// $validator = Validator::make($request->all(), [
+        //     'email' => 'required|email',
+        //     'password' => 'required|string|min:6',
+        // ]);
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors(), 422);
+        // }
+        // if (! $token = auth()->attempt($validator->validated())) {
+        //     return response()->json(['error' => 'Unauthorized'], 401);
+        // }
+        // // return $this->createNewToken($token);
+        // return response()->json(['token' => $token], 201);
     }
     /**
      * Register a User.
@@ -45,9 +68,7 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
-            'phone_number' => 'required',
-            'status_verified' => 'required',
-            'role' => 'required'
+            'phone_number' => 'required|string',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -97,10 +118,10 @@ class AuthController extends Controller
      */
     protected function createNewToken($token){
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'data' => [
+                'user' => auth()->user(),
+                'access_token' => $token,
+                'expires_in' => auth()->factory()->getTTL() * 60,]
         ]);
     }
 }
