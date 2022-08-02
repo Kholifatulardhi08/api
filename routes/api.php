@@ -8,6 +8,8 @@ use App\Http\Controllers\RoomApiController;
 use App\Http\Controllers\UnitApiController;
 use App\Http\Controllers\MealApiController;
 use App\Http\Controllers\DrinkApiController;
+use App\Http\Controllers\BookingApiController;
+use App\Http\Controllers\PantryApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,5 +66,19 @@ Route::group([
     Route::get('/drinks/{id}', [DrinkApiController::class, 'show']);
     Route::put('/drinks/{id}', [DrinkApiController::class, 'update']);
     Route::delete('/drinks/{id}', [DrinkApiController::class, 'destroy']);
+
+    // API BOOKING
+    Route::get('/bookings', [BookingApiController::class, 'index']);
+    Route::post('/bookings', [BookingApiController::class, 'store']);
+    Route::get('/bookings/{id}', [BookingApiController::class, 'show']);
+    Route::put('/bookings/{id}', [BookingApiController::class, 'update']);
+    Route::delete('/bookings/{id}', [BookingApiController::class, 'destroy']);
+
+    //API PANTRY
+    Route::get('/pantries', [BookingApiController::class, 'index']);
+    Route::post('/pantries', [BookingApiController::class, 'store']);
+    Route::get('/pantries/{id}', [BookingApiController::class, 'show']);
+    Route::put('/pantries/{id}', [BookingApiController::class, 'update']);
+    Route::delete('/pantries/{id}', [BookingApiController::class, 'destroy']);
 
 });
