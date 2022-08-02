@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            "id" => 1,
             "name" => "Admin",
             "email" => "admin@gmail.com",
             "password" => Hash::make("password"),
@@ -27,7 +26,6 @@ class UserSeeder extends Seeder
             "updated_at" => date_create()->format('Y-m-d H:i:s'),
         ]);
         DB::table('users')->insert([
-            "id" => 2,
             "name" => "Ardi",
             "email" => "ardi@gmail.com",
             "password" => Hash::make("password"),
@@ -38,7 +36,6 @@ class UserSeeder extends Seeder
             "updated_at" => date_create()->format('Y-m-d H:i:s'),
         ]);
             DB::table('users')->insert([
-            "id" => 3,
             "name" => "Fadli",
             "email" => "fadli@gmail.com",
             "password" => Hash::make("password"),

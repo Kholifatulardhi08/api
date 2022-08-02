@@ -35,7 +35,7 @@ class AuthController extends Controller
             // $request->session()->regenerate();
             $user = User::where('email', $request['email'])->select('id', 'email', 'role', 'status_verified')->first()->toArray();
 
-            if($user['status_verified'] === 0){
+            if($user['status_verified'] == 0){
                 return response()->json(["status" => Response::HTTP_UNAUTHORIZED, "message" => "you need to be approved"], Response::HTTP_UNAUTHORIZED);
             }
 
@@ -68,7 +68,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
             'phone_number' => ['required'],
             'role' => ['required', 'in:Admin,Guest,Pantry']
         ]);
