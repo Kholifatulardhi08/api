@@ -69,7 +69,8 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone_number' => ['required']
+            'phone_number' => ['required'],
+            'role' => ['required', 'in:Admin,Guest,Pantry']
         ]);
 
         //response error validation
@@ -83,8 +84,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone_number' => $request->phone_number,
-            //'status_verified' => true,
-            'role' => "user"
+            'status_verified' => false,
+            'role' => $request->role
         ]);
 
         return response()->json([

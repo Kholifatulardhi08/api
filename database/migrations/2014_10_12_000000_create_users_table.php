@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone_number', 15);
             $table->boolean('status_verified')->default(0);
-            $table->string('role', 10);
+            $table->enum('role', ['Admin', 'Guest', 'Pantry']);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -22,7 +22,29 @@ class UserSeeder extends Seeder
             "password" => Hash::make("password"),
             "phone_number" => "08123456789",
             "status_verified" => true,
-            "role" => "admin",
+            "role" => "Admin",
+            "created_at" => date_create()->format('Y-m-d H:i:s'),
+            "updated_at" => date_create()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            "id" => 2,
+            "name" => "Ardi",
+            "email" => "ardi@gmail.com",
+            "password" => Hash::make("password"),
+            "phone_number" => "081243667891",
+            "status_verified" => false,
+            "role" => "Guest",
+            "created_at" => date_create()->format('Y-m-d H:i:s'),
+            "updated_at" => date_create()->format('Y-m-d H:i:s'),
+        ]);
+            DB::table('users')->insert([
+            "id" => 3,
+            "name" => "Fadli",
+            "email" => "fadli@gmail.com",
+            "password" => Hash::make("password"),
+            "phone_number" => "081214837896",
+            "status_verified" => false,
+            "role" => "Pantry",
             "created_at" => date_create()->format('Y-m-d H:i:s'),
             "updated_at" => date_create()->format('Y-m-d H:i:s'),
         ]);
