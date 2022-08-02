@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -37,7 +38,7 @@ class AuthController extends Controller
             if($user['status_verified'] === 0){
                 return response()->json(["status" => Response::HTTP_UNAUTHORIZED, "message" => "you need to be approved"], Response::HTTP_UNAUTHORIZED);
             }
-            
+
             $user += ['jwt_token' => $token];
 
             // return redirect()->intended('/home');
@@ -65,21 +66,30 @@ class AuthController extends Controller
      */
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:3,150',
-            'email' => 'required|string|email|max:50|unique:users',
-            'password' => 'required|string|min:6',
-            'phone_number' => 'required|string|max:15',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_number' => ['required']
         ]);
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+
+        //response error validation
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
         }
-        $user = User::create(array_merge(
-                    $validator->validated(),
-                    ['password' => bcrypt($request->password)]
-                ));
+
+        //save to database
+        $users = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number,
+            //'status_verified' => true,
+            'role' => "user"
+        ]);
+
         return response()->json([
             'message' => 'User successfully registered',
-            'user' => $user
+            'user' => $users
         ], 201);
     }
 
