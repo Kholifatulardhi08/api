@@ -45,19 +45,6 @@ class AuthController extends Controller
             return response()->json($user, Response::HTTP_CREATED);
         }
         return response()->json(["status" => Response::HTTP_UNAUTHORIZED, "message" => "email/password wrong"], Response::HTTP_UNAUTHORIZED);
-
-    	// $validator = Validator::make($request->all(), [
-        //     'email' => 'required|email',
-        //     'password' => 'required|string|min:6',
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json($validator->errors(), 422);
-        // }
-        // if (! $token = auth()->attempt($validator->validated())) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
-        // // return $this->createNewToken($token);
-        // return response()->json(['token' => $token], 201);
     }
     /**
      * Register a User.
