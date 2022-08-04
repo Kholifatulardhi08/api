@@ -33,6 +33,7 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 
+    //API APPROVE USER
     Route::post('/approve', [approvalController::class, 'approve']);
 
     //API USER
