@@ -18,7 +18,7 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        return new UserResource(User::all());
+        return new UserResource(User::orderBy('id', 'asc')->get());
     }
 
     /**
