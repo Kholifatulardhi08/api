@@ -16,7 +16,7 @@ class RoomApiController extends Controller
      */
     public function index()
     {
-        return new RoomResource(Room::all());
+        return new RoomResource(Room::orderBy('id', 'asc')->get());
     }
 
     /**

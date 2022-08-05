@@ -16,7 +16,7 @@ class MealApiController extends Controller
      */
     public function index()
     {
-        return new MealResource(Meal::all());
+        return new MealResource(Meal::orderBy('id', 'asc')->get());
     }
 
     /**

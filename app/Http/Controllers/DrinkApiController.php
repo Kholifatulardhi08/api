@@ -16,7 +16,7 @@ class DrinkApiController extends Controller
      */
     public function index()
     {
-        return new DrinkResource(Drink::all());
+        return new DrinkResource(Drink::orderBy('id', 'asc')->get());
     }
 
     /**

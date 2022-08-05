@@ -17,7 +17,7 @@ class UnitApiController extends Controller
      */
     public function index()
     {
-        return new UnitResource(Unit::all());
+        return new UnitResource(Unit::orderBy('id', 'asc')->get());
     }
 
     /**
