@@ -53,16 +53,16 @@ class AuthController extends Controller
      */
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-            'phone_number' => ['required'],
+            'name' => ['required', 'string', 'min:3', 'max:150'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
+            'phone_number' => ['required', 'string', 'max:15'],
             'role' => ['required', 'in:Admin,Guest,Pantry']
         ]);
 
         //response error validation
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return response()->json(["message" => $validator->errors()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         //save to database

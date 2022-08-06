@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Unit;
+use App\Models\Drink;
 use Illuminate\Database\Seeder;
 
-class Unitseeder extends Seeder
+class Drinkseeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,30 +16,42 @@ class Unitseeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Digital Bussines Solution',
-                'code' => 'DBS',
+                'name' => 'Aqua Botol',
+                'total' => 60,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Head Reqruitment',
-                'code' => 'HR',
+                'name' => 'Aqua Gelas',
+                'total' => 110,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Telco Digital Solution',
-                'code' => 'TDS',
+                'name' => 'Teh Botol',
+                'total' => 15,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Cloud services',
-                'code' => 'CS',
+                'name' => 'Le Minerale',
+                'total' => 35,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Vit',
+                'total' => 70,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Ades',
+                'total' => 132,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ]
         ];
-        Unit::insert($data);
+        Drink::insert($data);
     }
 }

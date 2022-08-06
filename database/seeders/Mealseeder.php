@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Unit;
+use App\Models\Meal;
 use Illuminate\Database\Seeder;
 
-class Unitseeder extends Seeder
+class Mealseeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,30 +16,42 @@ class Unitseeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Digital Bussines Solution',
-                'code' => 'DBS',
+                'name' => 'Fitbar',
+                'total' => 13,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Head Reqruitment',
-                'code' => 'HR',
+                'name' => 'Lumpia',
+                'total' => 30,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Telco Digital Solution',
-                'code' => 'TDS',
+                'name' => 'Risol',
+                'total' => 20,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Cloud services',
-                'code' => 'CS',
+                'name' => 'Combro',
+                'total' => 7,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Bakpao',
+                'total' => 23,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Pastel',
+                'total' => 36,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ]
         ];
-        Unit::insert($data);
+        Meal::insert($data);
     }
 }
