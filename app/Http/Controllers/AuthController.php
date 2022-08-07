@@ -97,7 +97,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh() {
-        return $this->createNewToken(auth()->refresh());
+        return $this->createRefreshToken(auth()->refresh());
     }
     /**
      * Get the authenticated User.
@@ -114,12 +114,11 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function createNewToken($token){
+    protected function createRefreshToken($token){
         return response()->json([
-            'data' => [
-                'user' => auth()->user(),
-                'access_token' => $token,
-                'expires_in' => auth()->factory()->getTTL() * 60,]
+            'user' => auth()->user(),
+            'access_token' => $token,
+            'expires_in' => 20160 * 60
         ]);
     }
 }
