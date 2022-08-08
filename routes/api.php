@@ -24,16 +24,16 @@ use App\Http\Controllers\PantryApiController;
 */
 
 //Route Middleware
-Route::group(['middleware' => ['jwt.verify']], function() {
+Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user', [AuthController::class, 'userProfile']);
-    Route::group([
-        'middleware' => 'api',
-        'prefix' => 'auth'
-    ], function ($router) {
+
+    //Route Middleware
+    Route::group(['middleware' => ['jwt.verify']], function() {
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/refresh', [AuthController::class, 'refresh']);
+        Route::get('/user', [AuthController::class, 'userProfile']);
+
 
         //API APPROVE USER
         Route::post('/approve', [approvalController::class, 'approve']);
