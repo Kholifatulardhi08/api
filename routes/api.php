@@ -44,6 +44,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('/users/{id}', [UserApiController::class, 'show']);
         Route::put('/users/{id}', [UserApiController::class, 'update']);
         Route::delete('/users/{id}', [UserApiController::class, 'destroy']);
+        Route::get('/search/{name}', [UserApiController::class, 'search']);
 
         //API ROOM
         Route::get('/rooms', [RoomApiController::class, 'index']);
