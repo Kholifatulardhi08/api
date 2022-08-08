@@ -124,4 +124,9 @@ class RoomApiController extends Controller
 
         return new RoomResource($rooms);
     }
+
+    public function search($name)
+    {
+        return Room::Where("name","like", "%".$name."%")->get();
+    }
 }

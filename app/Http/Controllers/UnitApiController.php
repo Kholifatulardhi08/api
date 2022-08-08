@@ -121,4 +121,9 @@ class UnitApiController extends Controller
 
         return new UnitResource($units);
     }
+
+    public function search($name)
+    {
+        return Unit::Where("name","like", "%".$name."%")->orWhere("code", "like", "%".$name."%")->get();
+    }
 }

@@ -120,4 +120,9 @@ class MealApiController extends Controller
 
         return new MealResource($meals);
     }
+
+    public function search($name)
+    {
+        return Meal::Where("name","like", "%".$name."%")->get();
+    }
 }

@@ -44,7 +44,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('/users/{id}', [UserApiController::class, 'show']);
         Route::put('/users/{id}', [UserApiController::class, 'update']);
         Route::delete('/users/{id}', [UserApiController::class, 'destroy']);
-        Route::get('/search/{name}', [UserApiController::class, 'search']);
+        Route::get('users/search/{name}', [UserApiController::class, 'search']);
 
         //API ROOM
         Route::get('/rooms', [RoomApiController::class, 'index']);
@@ -52,6 +52,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('/rooms/{id}', [RoomApiController::class, 'show']);
         Route::put('/rooms/{id}', [RoomApiController::class, 'update']);
         Route::delete('/rooms/{id}', [RoomApiController::class, 'destroy']);
+        Route::get('rooms/search/{name}', [RoomApiController::class, 'search']);
 
         // API UNIT
         Route::get('/units', [UnitApiController::class, 'index']);
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('/units/{id}', [UnitApiController::class, 'show']);
         Route::put('/units/{id}', [UnitApiController::class, 'update']);
         Route::delete('/units/{id}', [UnitApiController::class, 'destroy']);
+        Route::get('units/search/{name}', [UnitApiController::class, 'search']);
 
         // API MEAL
         Route::get('/meals', [MealApiController::class, 'index']);
@@ -66,6 +68,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('/meals/{id}', [MealApiController::class, 'show']);
         Route::put('/meals/{id}', [MealApiController::class, 'update']);
         Route::delete('/meals/{id}', [MealApiController::class, 'destroy']);
+        Route::get('meals/search/{name}', [MealApiController::class, 'search']);
+
 
         // API DRINK
         Route::get('/drinks', [DrinkApiController::class, 'index']);
@@ -73,6 +77,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('/drinks/{id}', [DrinkApiController::class, 'show']);
         Route::put('/drinks/{id}', [DrinkApiController::class, 'update']);
         Route::delete('/drinks/{id}', [DrinkApiController::class, 'destroy']);
+        Route::get('drinks/search/{name}', [DrinkApiController::class, 'search']);
+
 
         // API BOOKING
         Route::get('/bookings', [BookingApiController::class, 'index']);

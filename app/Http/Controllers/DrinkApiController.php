@@ -120,4 +120,9 @@ class DrinkApiController extends Controller
 
         return new DrinkResource($drinks);
     }
+
+    public function search($name)
+    {
+        return Drink::Where("name","like", "%".$name."%")->get();
+    }
 }
