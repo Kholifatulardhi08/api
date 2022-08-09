@@ -16,7 +16,10 @@ class MealApiController extends Controller
      */
     public function index()
     {
-        return new MealResource(Meal::orderBy('id', 'asc')->get());
+        return Meal::where('status_active', 1)
+            ->select('id', 'name', 'total')
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
     /**

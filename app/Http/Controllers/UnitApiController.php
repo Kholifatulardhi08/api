@@ -17,7 +17,10 @@ class UnitApiController extends Controller
      */
     public function index()
     {
-        return new UnitResource(Unit::orderBy('id', 'asc')->get());
+        return Unit::where('status_active', 1)
+            ->select('id', 'name', 'code')
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
     /**

@@ -16,7 +16,10 @@ class DrinkApiController extends Controller
      */
     public function index()
     {
-        return new DrinkResource(Drink::orderBy('id', 'asc')->get());
+        return Drink::where('status_active', 1)
+            ->select('id', 'name', 'total')
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
     /**

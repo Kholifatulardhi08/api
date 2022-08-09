@@ -17,6 +17,7 @@ class CreateDrinksTable extends Migration
             $table->id();
             $table->string('name', 30);
             $table->integer('total');
+            $table->boolean('status_active');
             $table->timestamps();
         });
     }

@@ -18,7 +18,9 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        return new UserResource(User::orderBy('id', 'asc')->get());
+        return User::select('id', 'name', 'email', 'phone_number', 'status_verified', 'role')
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
     /**

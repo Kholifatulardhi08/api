@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\approvalController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserApiController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\UnitApiController;
 use App\Http\Controllers\MealApiController;
 use App\Http\Controllers\DrinkApiController;
 use App\Http\Controllers\BookingApiController;
+use App\Http\Controllers\deleteController;
 use App\Http\Controllers\PantryApiController;
 
 /*
@@ -37,6 +37,9 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 
         //API APPROVE USER
         Route::post('/approve', [approvalController::class, 'approve']);
+
+        //API DELETE RESOURECE
+        Route::post('/delete', [deleteController::class, 'delete']);
 
         //API USER
         Route::get('/users', [UserApiController::class, 'index']);

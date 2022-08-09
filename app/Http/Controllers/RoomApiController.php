@@ -16,7 +16,10 @@ class RoomApiController extends Controller
      */
     public function index()
     {
-        return new RoomResource(Room::orderBy('id', 'asc')->get());
+        return Room::where('status_active', 1)
+            ->select('id', 'name', 'code', 'capacity')
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
     /**
