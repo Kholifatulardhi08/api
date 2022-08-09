@@ -93,8 +93,8 @@ class DrinkApiController extends Controller
     {
         $drinks = Drink::find($id);
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'total' => 'required'
+            'name' => ['required', 'string', 'max:30'],
+            'total' => ['required', 'integer']
         ]);
 
         //response error validation
@@ -125,8 +125,10 @@ class DrinkApiController extends Controller
         return new DrinkResource($drinks);
     }
 
-    public function search($name)
+    public function search($query)
     {
-        return Drink::Where("name","like", "%".$name."%")->get();
+        return Drink::select('id', 'name', 'total')
+            ->Where("name", "ilike", "%" . $query . "%")
+            ->get();
     }
 }

@@ -93,8 +93,8 @@ class MealApiController extends Controller
     {
         $meals = Meal::find($id);
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'total' => 'required'
+            'name' => ['required', 'string', 'max:30'],
+            'total' => ['required', 'integer']
         ]);
 
         //response error validation
@@ -125,8 +125,10 @@ class MealApiController extends Controller
         return new MealResource($meals);
     }
 
-    public function search($name)
+    public function search($query)
     {
-        return Meal::Where("name","like", "%".$name."%")->get();
+        return Meal::select('id', 'name', 'total')
+            ->Where("name", "ilike", "%" . $query . "%")
+            ->get();
     }
 }

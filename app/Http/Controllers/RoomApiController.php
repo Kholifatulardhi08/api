@@ -95,9 +95,9 @@ class RoomApiController extends Controller
     {
         $rooms = Room::find($id);
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'code' => 'required',
-            'capacity' => 'required'
+            'name' => ['required', 'string', 'max:50'],
+            'code' => ['required', 'string', 'max:15'],
+            'capacity' => ['required', 'integer'],
         ]);
 
         //response error validation
@@ -130,8 +130,11 @@ class RoomApiController extends Controller
         return new RoomResource($rooms);
     }
 
-    public function search($name)
+    public function search($query)
     {
-        return Room::Where("name","like", "%".$name."%")->get();
+        return Room::select('id', 'name', 'code', 'capacity')
+            ->Where("name", "ilike", "%" . $query . "%")
+            ->orWhere("code", "ilike", "%" . $query . "%")
+            ->get();
     }
 }

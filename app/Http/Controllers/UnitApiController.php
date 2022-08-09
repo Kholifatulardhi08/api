@@ -94,8 +94,8 @@ class UnitApiController extends Controller
     {
         $units = Unit::find($id);
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'code' => 'required'
+            'name' => ['required', 'string', 'max:100'],
+            'code' => ['required', 'string', 'max:15']
         ]);
 
         //response error validation
@@ -126,8 +126,11 @@ class UnitApiController extends Controller
         return new UnitResource($units);
     }
 
-    public function search($name)
+    public function search($query)
     {
-        return Unit::Where("name","like", "%".$name."%")->orWhere("code", "like", "%".$name."%")->get();
+        return Unit::select('id', 'name', 'code')
+            ->Where("name","ilike", "%" . $query . "%")
+            ->orWhere("code", "ilike", "%" . $query . "%")
+            ->get();
     }
 }

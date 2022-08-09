@@ -129,8 +129,11 @@ class UserApiController extends Controller
         return new UserResource($users);
     }
 
-    public function search($name)
+    public function search($query)
     {
-        return User::Where("name","like", "%".$name."%")->orWhere("email", "like", "%".$name."%")->get;
+        return User::Where("name", "ilike", "%" . $query . "%")
+            ->orWhere("email", "ilike", "%" . $query . "%")
+            ->orWhere("phone_number", "like", "%" . $query . "%")
+            ->get();
     }
 }
