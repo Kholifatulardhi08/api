@@ -37,10 +37,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 
         //API APPROVE USER
         Route::post('/approve', [approvalController::class, 'approve']);
-        Route::post('/statusroom', [approvalController::class, 'statusRoom']);
-        Route::post('/statusunit', [approvalController::class, 'statusUnit']);
-
-
 
         //API DELETE RESOURECE
         Route::post('/delete', [deleteController::class, 'delete']);

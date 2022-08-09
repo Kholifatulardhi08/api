@@ -18,23 +18,4 @@ class approvalController extends Controller
 
         return response()->json(['data' => $data], Response::HTTP_OK);
     }
-
-    public function statusUnit(Request $req)
-    {
-        $data = Unit::where('id', $req->id)->first();
-        $data->status_active = true;
-        $data->save();
-
-        return response()->json(['data' => $data], Response::HTTP_OK);
-    }
-
-    public function statusRoom(Request $req)
-    {
-        $data = Room::where('id', $req->id)->first();
-        $data->status_active = true;
-        $data->save();
-
-        return response()->json(['data' => $data], Response::HTTP_OK);
-    }
-
 }

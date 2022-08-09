@@ -10,6 +10,6 @@ class Meal extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'total'
+        'name', 'total', 'status_active'
     ];
 }

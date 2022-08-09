@@ -42,8 +42,8 @@ class UnitApiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required'],
-            'code' => ['required']
+            'name' => ['required', 'string', 'max:100'],
+            'code' => ['required', 'string', 'max:15']
         ]);
 
         //response error validation

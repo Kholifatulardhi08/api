@@ -41,8 +41,8 @@ class DrinkApiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required'],
-            'total' => ['required']
+            'name' => ['required', 'string', 'max:30'],
+            'total' => ['required', 'integer']
         ]);
 
         //response error validation
@@ -53,7 +53,8 @@ class DrinkApiController extends Controller
         //save to database
         $drinks = Drink::create([
             'name' => $request->name,
-            'total' => $request->total
+            'total' => $request->total,
+            'status_active' => true
         ]);
 
         return new DrinkResource($drinks);

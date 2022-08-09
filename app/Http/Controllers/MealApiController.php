@@ -41,8 +41,8 @@ class MealApiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required'],
-            'total' => ['required']
+            'name' => ['required', 'string', 'max:30'],
+            'total' => ['required', 'integer']
         ]);
 
         //response error validation
@@ -53,7 +53,8 @@ class MealApiController extends Controller
         //save to database
         $meals = Meal::create([
             'name' => $request->name,
-            'total' => $request->total
+            'total' => $request->total,
+            'status_active' => true
         ]);
 
         return new MealResource($meals);

@@ -41,9 +41,9 @@ class RoomApiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required'],
-            'code' => ['required'],
-            'capacity' => ['required'],
+            'name' => ['required', 'string', 'max:50'],
+            'code' => ['required', 'string', 'max:15'],
+            'capacity' => ['required', 'integer'],
         ]);
 
         //response error validation
@@ -55,7 +55,8 @@ class RoomApiController extends Controller
         $rooms = Room::create([
             'name' => $request->name,
             'code' => $request->code,
-            'capacity' => $request->capacity
+            'capacity' => $request->capacity,
+            'status_active' => true
         ]);
 
         return new RoomResource($rooms);
