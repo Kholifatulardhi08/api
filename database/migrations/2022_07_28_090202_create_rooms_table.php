@@ -18,7 +18,7 @@ class CreateRoomsTable extends Migration
             $table->string('name', 50);
             $table->string('code', 15);
             $table->integer('capacity');
-            $table->boolean('status_active');
+            $table->boolean('status_active')->default(0);
             $table->timestamps();
         });
     }

@@ -108,7 +108,8 @@ class RoomApiController extends Controller
         $rooms->update([
             'name' => $request->name,
             'code' => $request->code,
-            'capacity' => $request->capacity
+            'capacity' => $request->capacity,
+            'status_active' => true
         ]);
 
         return new RoomResource($rooms);

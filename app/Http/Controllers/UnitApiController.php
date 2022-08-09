@@ -54,7 +54,8 @@ class UnitApiController extends Controller
         //save to database
         $units = Unit::create([
             'name' => $request->name,
-            'code' => $request->code
+            'code' => $request->code,
+            'status_active' => true
         ]);
 
         return new UnitResource($units);
