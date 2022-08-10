@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -42,9 +43,9 @@ class UserApiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:150'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
         //response error validation
@@ -95,9 +96,10 @@ class UserApiController extends Controller
     {
         $users = User::find($id);
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'name' => ['required', 'string', 'min:3', 'max:150'],
+            'email' => ['required', 'string', 'email', 'max:50', Rule::unique('users')->ignore($id)],
+            'password' => ['required', 'string', 'min:6'],
+            'phone_number' => ['required', 'string', 'max:15']
         ]);
 
         //response error validation
@@ -110,6 +112,7 @@ class UserApiController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number
         ]);
 
         return new UserResource($users);
