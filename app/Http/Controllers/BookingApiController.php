@@ -70,6 +70,7 @@ class BookingApiController extends Controller
         return new BookingResource($bookings);
     }
 
+
     /**
      * Display the specified resource.
      *

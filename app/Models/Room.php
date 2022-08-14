@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Booking;
 
 class Room extends Model
 {
@@ -12,4 +13,10 @@ class Room extends Model
     protected $fillable = [
         'name', 'code', 'capacity', 'status_active'
     ];
+
+    public function booking()
+    {
+        return $this->hasOne(Booking::class);
+    }
+
 }
