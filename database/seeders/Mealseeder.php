@@ -17,46 +17,69 @@ class Mealseeder extends Seeder
         $data = [
             [
                 'name' => 'Fitbar',
-                'total' => 13,
+                'total' => 1,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Lumpia',
-                'total' => 30,
+                'total' => 1,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Risol',
-                'total' => 20,
+                'total' => 1,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Combro',
-                'total' => 7,
+                'total' => 1,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Bakpao',
-                'total' => 23,
+                'total' => 1,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Pastel',
-                'total' => 36,
+                'name' => 'Mendowan',
+                'total' => 1,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
-            ]
+            ],
+            [
+                'name' => 'Bakwan',
+                'total' => 1,
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'Cetot',
+                'total' => 1,
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+
+            [
+                'name' => 'Putu',
+                'total' => 1,
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
         ];
         Meal::insert($data);
     }

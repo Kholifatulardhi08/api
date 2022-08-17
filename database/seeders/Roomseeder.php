@@ -41,7 +41,7 @@ class Roomseeder extends Seeder
             ],
             [
                 'name' => 'Ruangan 4',
-                'code' => 'B11',
+                'code' => 'B1',
                 'capacity' => 5,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
@@ -49,7 +49,7 @@ class Roomseeder extends Seeder
             ],
             [
                 'name' => 'Ruangan 5',
-                'code' => 'A9',
+                'code' => 'B2',
                 'capacity' => 10,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
@@ -57,12 +57,44 @@ class Roomseeder extends Seeder
             ],
             [
                 'name' => 'Ruangan 6',
+                'code' => 'B3',
+                'capacity' => 15,
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Ruangan 7',
                 'code' => 'C1',
                 'capacity' => 15,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
-            ]
+            ],
+            [
+                'name' => 'Ruangan 8',
+                'code' => 'C2',
+                'capacity' => 15,
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Ruangan 9',
+                'code' => 'C3',
+                'capacity' => 15,
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Ruangan 10',
+                'code' => 'D1',
+                'capacity' => 15,
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
         ];
         Room::insert($data);
     }

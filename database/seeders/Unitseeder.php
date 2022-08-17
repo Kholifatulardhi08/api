@@ -42,7 +42,49 @@ class Unitseeder extends Seeder
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
-            ]
+            ],
+            [
+                'name' => 'Big data solution',
+                'code' => 'BDS',
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Digital experience',
+                'code' => 'DE',
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Cyber security services',
+                'code' => 'CSS',
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Colocation',
+                'code' => 'C',
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Data center services',
+                'code' => 'DCS',
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'IT support',
+                'code' => 'ITS',
+                'status_active' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+            ],
         ];
         Unit::insert($data);
     }
