@@ -32,7 +32,6 @@ class AuthController extends Controller
         ]);
 
         if ($token = Auth::attempt($credentials)) {
-            // $request->session()->regenerate();
             $user = User::where('email', $request['email'])->select('id', 'email', 'role', 'status_verified')->first()->toArray();
 
             if($user['status_verified'] == 0){
@@ -41,7 +40,6 @@ class AuthController extends Controller
 
             $user += ['jwt_token' => $token];
 
-            // return redirect()->intended('/home');
             return response()->json($user, Response::HTTP_CREATED);
         }
         return response()->json(["status" => Response::HTTP_UNAUTHORIZED, "message" => "email/password wrong"], Response::HTTP_UNAUTHORIZED);

@@ -16,29 +16,39 @@ class Pantryseeder extends Seeder
     {
         $data = [
             [
-                'booking_id' => 5,
+                'booking_id' => 1,
                 'meal_id' => 5,
                 'drink_id' => 5,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
-                'booking_id' => 4,
+                'booking_id' => 2,
                 'meal_id' => 4,
                 'drink_id' => 4,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
                 'booking_id' => 3,
                 'meal_id' => 3,
                 'drink_id' => 3,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
-                'booking_id' => 2,
+                'booking_id' => 4,
                 'meal_id' => 2,
                 'drink_id' => 2,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
-                'booking_id' => 1,
+                'booking_id' => 5,
                 'meal_id' => 1,
                 'drink_id' => 1,
+                'created_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ]
         ];
         Pantry::insert($data);

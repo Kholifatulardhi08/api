@@ -16,11 +16,9 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->string('agenda', 100);
-            $table->string('snack');
-            $table->date('date');
             $table->integer('person');
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start');
+            $table->timestamp('end');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('room_id')->references('id')->on('rooms');
             $table->foreignId('unit_id')->references('id')->on('units');

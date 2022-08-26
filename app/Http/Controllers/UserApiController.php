@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -22,16 +23,6 @@ class UserApiController extends Controller
         return User::select('id', 'name', 'email', 'phone_number', 'status_verified', 'role')
             ->orderBy('id', 'asc')
             ->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -61,28 +52,6 @@ class UserApiController extends Controller
         ]);
 
         return new UserResource($users);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return new UserResource(User::find($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -119,18 +88,11 @@ class UserApiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $query
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $users, $id)
-    {
-        $users = User::find($id);
-        $users->delete();
-
-        return new UserResource($users);
-    }
 
     public function search($query)
     {
@@ -138,5 +100,21 @@ class UserApiController extends Controller
             ->orWhere("email", "ilike", "%" . $query . "%")
             ->orWhere("phone_number", "like", "%" . $query . "%")
             ->get();
+    }
+
+    /**
+     * Approve user.
+     *
+     * @param  \Illuminate\Http\Request  $req
+     * @return \Illuminate\Http\Response
+     */
+
+    public function approve(Request $req)
+    {
+        $data = User::where('id', $req->id)->first();
+        $data->status_verified = true;
+        $data->save();
+
+        return response()->json(['data' => $data], Response::HTTP_OK);
     }
 }

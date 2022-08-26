@@ -23,16 +23,6 @@ class MealApiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -58,28 +48,6 @@ class MealApiController extends Controller
         ]);
 
         return new MealResource($meals);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return new MealResource(Meal::find($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -112,18 +80,11 @@ class MealApiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Search the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $query
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Meal $meals, $id)
-    {
-        $meals = Meal::find($id);
-        $meals->delete();
-
-        return new MealResource($meals);
-    }
 
     public function search($query)
     {

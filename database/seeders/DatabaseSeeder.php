@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Unitseeder::class);
         $this->call(Drinkseeder::class);
         $this->call(Mealseeder::class);
+        $this->call(Bookingseeder::class);
+        $this->call(Pantryseeder::class);
     }
 }

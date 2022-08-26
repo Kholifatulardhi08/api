@@ -34,68 +34,45 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('/refresh', [AuthController::class, 'refresh']);
         Route::get('/user', [AuthController::class, 'userProfile']);
 
-
-        //API APPROVE USER
-        Route::post('/approve', [approvalController::class, 'approve']);
-
         //API DELETE RESOURECE
         Route::post('/delete', [deleteController::class, 'delete']);
 
         //API USER
         Route::get('/users', [UserApiController::class, 'index']);
-        Route::post('/users', [UserApiController::class, 'store']);
-        Route::get('/users/{id}', [UserApiController::class, 'show']);
+        Route::post('/users/approve', [UserApiController::class, 'approve']);
         Route::put('/users/{id}', [UserApiController::class, 'update']);
-        Route::delete('/users/{id}', [UserApiController::class, 'destroy']);
         Route::get('users/search/{query}', [UserApiController::class, 'search']);
 
         //API ROOM
         Route::get('/rooms', [RoomApiController::class, 'index']);
         Route::post('/rooms', [RoomApiController::class, 'store']);
-        Route::get('/rooms/{id}', [RoomApiController::class, 'show']);
         Route::put('/rooms/{id}', [RoomApiController::class, 'update']);
-        Route::delete('/rooms/{id}', [RoomApiController::class, 'destroy']);
         Route::get('rooms/search/{query}', [RoomApiController::class, 'search']);
 
         // API UNIT
         Route::get('/units', [UnitApiController::class, 'index']);
         Route::post('/units', [UnitApiController::class, 'store']);
-        Route::get('/units/{id}', [UnitApiController::class, 'show']);
         Route::put('/units/{id}', [UnitApiController::class, 'update']);
-        Route::delete('/units/{id}', [UnitApiController::class, 'destroy']);
         Route::get('units/search/{query}', [UnitApiController::class, 'search']);
 
         // API MEAL
         Route::get('/meals', [MealApiController::class, 'index']);
         Route::post('/meals', [MealApiController::class, 'store']);
-        Route::get('/meals/{id}', [MealApiController::class, 'show']);
         Route::put('/meals/{id}', [MealApiController::class, 'update']);
-        Route::delete('/meals/{id}', [MealApiController::class, 'destroy']);
         Route::get('meals/search/{query}', [MealApiController::class, 'search']);
 
 
         // API DRINK
         Route::get('/drinks', [DrinkApiController::class, 'index']);
         Route::post('/drinks', [DrinkApiController::class, 'store']);
-        Route::get('/drinks/{id}', [DrinkApiController::class, 'show']);
         Route::put('/drinks/{id}', [DrinkApiController::class, 'update']);
-        Route::delete('/drinks/{id}', [DrinkApiController::class, 'destroy']);
         Route::get('drinks/search/{query}', [DrinkApiController::class, 'search']);
 
 
         // API BOOKING
         Route::get('/bookings', [BookingApiController::class, 'index']);
         Route::post('/bookings', [BookingApiController::class, 'store']);
-        Route::get('/bookings/{id}', [BookingApiController::class, 'show']);
         Route::put('/bookings/{id}', [BookingApiController::class, 'update']);
-        Route::delete('/bookings/{id}', [BookingApiController::class, 'destroy']);
-
-        //API PANTRY
-        Route::get('/pantries', [BookingApiController::class, 'index']);
-        Route::post('/pantries', [BookingApiController::class, 'store']);
-        Route::get('/pantries/{id}', [BookingApiController::class, 'show']);
-        Route::put('/pantries/{id}', [BookingApiController::class, 'update']);
-        Route::delete('/pantries/{id}', [BookingApiController::class, 'destroy']);
 
     });
 });

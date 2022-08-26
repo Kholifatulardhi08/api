@@ -12,4 +12,9 @@ class Meal extends Model
     protected $fillable = [
         'name', 'total', 'status_active'
     ];
+
+    public function pantry()
+    {
+        return $this->hasMany(Pantry::class);
+    }
 }

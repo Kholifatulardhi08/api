@@ -15,11 +15,9 @@ class Booking extends Model
 
     protected $fillable = [
         'agenda',
-        'snack',
-        'date',
         'person',
-        'start_time',
-        'end_time',
+        'start',
+        'end',
         'user_id',
         'room_id',
         'unit_id'
@@ -42,6 +40,6 @@ class Booking extends Model
 
     public function pantry()
     {
-        return $this->hasMany(Pantry::class);
+        return $this->hasOne(Pantry::class);
     }
 }

@@ -23,16 +23,6 @@ class RoomApiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -60,28 +50,6 @@ class RoomApiController extends Controller
         ]);
 
         return new RoomResource($rooms);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return new RoomResource(Room::find($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -117,18 +85,11 @@ class RoomApiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Search the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $query
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $rooms ,$id)
-    {
-        $rooms = Room::find($id);
-        $rooms->delete();
-
-        return new RoomResource($rooms);
-    }
 
     public function search($query)
     {

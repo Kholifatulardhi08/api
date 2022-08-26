@@ -24,16 +24,6 @@ class UnitApiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -59,28 +49,6 @@ class UnitApiController extends Controller
         ]);
 
         return new UnitResource($units);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return new UnitResource(Unit::find($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -113,18 +81,11 @@ class UnitApiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Search the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $query
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unit $units, $id)
-    {
-        $units = Unit::find($id);
-        $units->delete();
-
-        return new UnitResource($units);
-    }
 
     public function search($query)
     {

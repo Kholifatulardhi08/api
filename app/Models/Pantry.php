@@ -18,6 +18,15 @@ class Pantry extends Model
 
     public function booking()
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsTo(Booking::class);
+    }
+    public function meal()
+    {
+        return $this->belongsTo(Meal::class);
+    }
+
+    public function drink()
+    {
+        return $this->belongsTo(Drink::class);
     }
 }

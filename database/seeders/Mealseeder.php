@@ -17,57 +17,49 @@ class Mealseeder extends Seeder
         $data = [
             [
                 'name' => 'Fitbar',
-                'total' => 1,
+                'total' => 30,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Lumpia',
-                'total' => 1,
+                'total' => 15,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Risol',
-                'total' => 1,
+                'total' => 20,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Combro',
-                'total' => 1,
+                'total' => 17,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Bakpao',
-                'total' => 1,
+                'total' => 11,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Mendowan',
-                'total' => 1,
+                'total' => 7,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
             ],
             [
                 'name' => 'Bakwan',
-                'total' => 1,
-                'status_active' => 1,
-                'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s'),
-            ],
-
-            [
-                'name' => 'Cetot',
-                'total' => 1,
+                'total' => 5,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),
@@ -75,7 +67,7 @@ class Mealseeder extends Seeder
 
             [
                 'name' => 'Putu',
-                'total' => 1,
+                'total' => 16,
                 'status_active' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s'),

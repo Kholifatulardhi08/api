@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\BookingResource;
 use App\Models\Booking;
+use App\Models\Pantry;
+use App\Models\Drink;
 
 class BookingApiController extends Controller
 {
@@ -20,16 +22,6 @@ class BookingApiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,15 +30,14 @@ class BookingApiController extends Controller
     public function store(Booking $bookings, Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'agenda' => ['required'],
-            'snack' => ['required'],
-            'date' => ['required'],
-            'person' => ['required'],
-            'start_time' => ['required'],
-            'end_time' => ['required'],
+            'agenda' => ['required', 'string', 'max:30'],
+            'person' => ['required', 'integer'],
+            'start' => ['required'],
+            'end' => ['required'],
             'user_id' => ['required'],
             'room_id' => ['required'],
-            'unit_id' => ['required']
+            'unit_id' => ['required'],
+            'drink_id' => ['required']
         ]);
 
         //response error validation
@@ -54,82 +45,25 @@ class BookingApiController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        //save to database
+        // Insert to bookings table
         $bookings = Booking::create([
             'agenda' => $request->agenda,
-            'snack' => $request->snack,
-            'date' => $request->date,
             'person' => $request->person,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
+            'start' => $request->start,
+            'end' => $request->end,
             'user_id' => $request->user_id,
             'room_id' => $request->room_id,
             'unit_id' => $request->unit_id
         ]);
+        // Insert to pantries table
+        Pantry::create([
+            'booking_id' => $bookings->id,
+            'drink_id' => $request->drink_id
+        ]);
+        // Update drink stock
+        Drink::where('id', $request->drink_id)
+            ->decrement('total', $request->person);
 
-        return new BookingResource($bookings);
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return new BookingResource(Booking::find($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Booking $bookings, Request $request, $id)
-    {
-
-        $bookings = Booking::find($id);
-        $bookings->update($request->only([
-            'agenda',
-            'snack',
-            'date',
-            'person',
-            'start_time',
-            'end_time',
-            'user_id',
-            'room_id',
-            'unit_id'
-        ]));
-
-        return new BookingResource($bookings);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Booking $bookings, $id)
-    {
-        $bookings = Booking::find($id);
-        $bookings->delete();
-
-        return new BookingResource($bookings);
+        return response()->json(['message' => 'succed book a meeting'], 201);
     }
 }
