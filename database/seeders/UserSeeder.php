@@ -23,47 +23,47 @@ class UserSeeder extends Seeder
             "status_verified" => true,
             "role" => "Admin",
             "created_at" => date_create()->format('Y-m-d H:i:s'),
-            "updated_at" => date_create()->format('Y-m-d H:i:s'),
+            "updated_at" => date_create()->format('Y-m-d H:i:s')
         ]);
         DB::table('users')->insert([
             "name" => "Ardi",
             "email" => "ardi@gmail.com",
             "password" => Hash::make("password"),
             "phone_number" => "081243667891",
-            "status_verified" => true,
+            "status_verified" => false,
             "role" => "Guest",
             "created_at" => date_create()->format('Y-m-d H:i:s'),
-            "updated_at" => date_create()->format('Y-m-d H:i:s'),
+            "updated_at" => date_create()->format('Y-m-d H:i:s')
         ]);
             DB::table('users')->insert([
             "name" => "Fadli",
             "email" => "fadli@gmail.com",
             "password" => Hash::make("password"),
             "phone_number" => "081214837896",
-            "status_verified" => true,
+            "status_verified" => false,
             "role" => "Pantry",
             "created_at" => date_create()->format('Y-m-d H:i:s'),
-            "updated_at" => date_create()->format('Y-m-d H:i:s'),
+            "updated_at" => date_create()->format('Y-m-d H:i:s')
         ]);
             DB::table('users')->insert([
             "name" => "User",
             "email" => "user@gmail.com",
             "password" => Hash::make("password"),
             "phone_number" => "081225755325",
-            "status_verified" => true,
+            "status_verified" => false,
             "role" => "Guest",
             "created_at" => date_create()->format('Y-m-d H:i:s'),
-            "updated_at" => date_create()->format('Y-m-d H:i:s'),
+            "updated_at" => date_create()->format('Y-m-d H:i:s')
         ]);
             DB::table('users')->insert([
             "name" => "Pantry",
             "email" => "pantry@gmail.com",
             "password" => Hash::make("password"),
             "phone_number" => "082207136412",
-            "status_verified" => true,
+            "status_verified" => false,
             "role" => "Pantry",
             "created_at" => date_create()->format('Y-m-d H:i:s'),
-            "updated_at" => date_create()->format('Y-m-d H:i:s'),
+            "updated_at" => date_create()->format('Y-m-d H:i:s')
         ]);
     }
 }

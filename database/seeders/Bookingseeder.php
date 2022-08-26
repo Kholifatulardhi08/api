@@ -25,7 +25,7 @@ class Bookingseeder extends Seeder
                 'room_id' => 1,
                 'unit_id' => 1,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
                 'agenda' => 'Meeting 2',
@@ -36,7 +36,7 @@ class Bookingseeder extends Seeder
                 'room_id' => 2,
                 'unit_id' => 2,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
                 'agenda' => 'Meeting 3',
@@ -47,7 +47,7 @@ class Bookingseeder extends Seeder
                 'room_id' => 3,
                 'unit_id' => 3,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
                 'agenda' => 'Meeting 4',
@@ -58,7 +58,7 @@ class Bookingseeder extends Seeder
                 'room_id' => 3,
                 'unit_id' => 3,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
             [
                 'agenda' => 'Meeting 5',
@@ -69,7 +69,7 @@ class Bookingseeder extends Seeder
                 'room_id' => 3,
                 'unit_id' => 3,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s'),
+                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ]
         ];
         Booking::insert($data);
