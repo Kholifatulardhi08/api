@@ -88,4 +88,12 @@ class BookingApiController extends Controller
 
         // return response()->json(['message' => $drink], 201);
     }
+
+    public function search($query)
+    {
+        return Booking::Where("agenda", "ilike", "%" . $query . "%")
+            ->orWhere("person", "ilike", "%" . $query . "%")
+            ->orWhere("user_id", "like", "%" . $query . "%")
+            ->get();
+    }
 }

@@ -42,6 +42,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::post('/users/approve', [UserApiController::class, 'approve']);
         Route::put('/users/{id}', [UserApiController::class, 'update']);
         Route::get('users/search/{query}', [UserApiController::class, 'search']);
+        Route::get('users/{id}', [UserApiController::class, 'username']);
 
         //API ROOM
         Route::get('/rooms', [RoomApiController::class, 'index']);
@@ -73,6 +74,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('/bookings', [BookingApiController::class, 'index']);
         Route::post('/bookings', [BookingApiController::class, 'store']);
         Route::put('/bookings/{id}', [BookingApiController::class, 'update']);
-
+        Route::get('bookings/search/{query}', [BookingApiController::class, 'search']);
     });
 });

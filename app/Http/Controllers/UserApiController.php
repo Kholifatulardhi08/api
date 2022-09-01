@@ -117,4 +117,10 @@ class UserApiController extends Controller
 
         return response()->json(['data' => $data], Response::HTTP_OK);
     }
+
+    public function username($id){
+        $users = User::find($id);
+
+        return response()->json(['data' => $users], Response::HTTP_OK);
+    }
 }
