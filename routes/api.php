@@ -36,6 +36,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 
         //API DELETE RESOURECE
         Route::post('/delete', [deleteController::class, 'delete']);
+        //Route::post('/deleteBooking/{id}', [deleteController::class, 'deleteBooking']);
+
 
         //API USER
         Route::get('/users', [UserApiController::class, 'index']);

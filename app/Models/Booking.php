@@ -20,7 +20,8 @@ class Booking extends Model
         'end',
         'user_id',
         'room_id',
-        'unit_id'
+        'unit_id',
+        'status_active'
     ];
 
     public function user()

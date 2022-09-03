@@ -24,7 +24,10 @@ class BookingApiController extends Controller
      */
     public function index()
     {
-        return new BookingResource(Booking::all());
+        return Booking::where('status_active', 1)
+            ->select('id','agenda', 'person', 'start', 'end', 'user_id', 'room_id', 'unit_id')
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
     /**
@@ -59,13 +62,15 @@ class BookingApiController extends Controller
             'end' => $request->end,
             'user_id' => $request->user_id,
             'room_id' => $request->room_id,
-            'unit_id' => $request->unit_id
+            'unit_id' => $request->unit_id,
+            'status_active' => true,
         ]);
 
         // Insert to pantries table
         Pantry::create([
             'booking_id' => $bookings->id,
-            'drink_id' => $request->drink_id
+            'drink_id' => $request->drink_id,
+            'status_active' => true
         ]);
 
         // Update drink stock
@@ -83,10 +88,10 @@ class BookingApiController extends Controller
             ->first();
 
 
-        Mail::to(Auth::user()->email)
-            ->send(new bookMeetingNotification($bookings, Auth::user()->name, $unit, $room));
+        //Mail::to(Auth::user()->email)
+        //    ->send(new bookMeetingNotification($bookings, Auth::user()->name, $unit, $room));
 
-        // return response()->json(['message' => $drink], 201);
+         return response()->json(['data' => $bookings, 'message' => 'Booking Succsesfully Created'],  201);
     }
 
     public function search($query)

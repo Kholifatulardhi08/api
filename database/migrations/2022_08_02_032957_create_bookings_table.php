@@ -19,10 +19,15 @@ class CreateBookingsTable extends Migration
             $table->integer('person');
             $table->timestamp('start');
             $table->timestamp('end');
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('room_id')->references('id')->on('rooms');
-            $table->foreignId('unit_id')->references('id')->on('units');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('unit_id');
+            $table->boolean('status_active');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
         });
     }
 

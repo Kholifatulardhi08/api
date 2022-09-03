@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\Drink;
 use App\Models\Meal;
 use App\Models\Booking;
+use App\Models\Pantry;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -43,11 +44,21 @@ class deleteController extends Controller
             return response()->json(['data' => $data], Response::HTTP_OK);
         }
         else if ($req->type === 'Booking'){
-            $data = Booking::where('id', $req->id)->first();
-            $data->status_active = false;
-            $data->save();
+            $bookings = Booking::where('id', $req->id)->first();
+            $bookings->status_active = false;
+            $bookings->save();
 
-            return response()->json(['data' => $data], Response::HTTP_OK);
+            $pantries = Pantry::where('booking_id', $req->id)->first();
+            $pantries->status_active = false;
+            $pantries->save();
+            return response()->json(['bookings' => $bookings, 'pantries' => $pantries], Response::HTTP_OK);
         }
+
+    }
+    public function deleteBooking(Request $req, $id)
+    {
+        $bookings = Booking::find($id);
+        $bookings->delete();
+        return response()->json('successfully deleted');
     }
 }

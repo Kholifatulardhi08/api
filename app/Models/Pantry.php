@@ -13,7 +13,8 @@ class Pantry extends Model
     protected $fillable = [
         'booking_id',
         'meal_id',
-        'drink_id'
+        'drink_id',
+        'status_active'
     ];
 
     public function booking()

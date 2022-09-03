@@ -18,6 +18,7 @@ class CreatePantriesTable extends Migration
             $table->foreignId('booking_id')->references('id')->on('bookings');
             $table->foreignId('meal_id')->nullable()->references('id')->on('meals');
             $table->foreignId('drink_id')->references('id')->on('drinks');
+            $table->boolean('status_active');
             $table->timestamps();
         });
     }

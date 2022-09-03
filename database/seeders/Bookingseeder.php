@@ -24,6 +24,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 1,
                 'room_id' => 1,
                 'unit_id' => 1,
+                'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
@@ -35,6 +36,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 2,
                 'room_id' => 2,
                 'unit_id' => 2,
+                'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
@@ -46,6 +48,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 4,
                 'room_id' => 3,
                 'unit_id' => 3,
+                'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
@@ -57,6 +60,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 4,
                 'room_id' => 3,
                 'unit_id' => 3,
+                'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
             ],
@@ -68,6 +72,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 2,
                 'room_id' => 3,
                 'unit_id' => 3,
+                'status_active' => True,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
             ]
