@@ -23,6 +23,9 @@ use App\Http\Controllers\PantryApiController;
 |
 */
 
+//ROUTE SHOW CALENDAR GUEST
+Route::get('/bookings', [BookingApiController::class, 'index']);
+
 //Route Middleware
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
