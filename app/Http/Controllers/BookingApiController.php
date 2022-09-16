@@ -11,7 +11,9 @@ use App\Models\Pantry;
 use App\Models\Drink;
 use App\Models\Room;
 use App\Models\Unit;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Terminal;
 
@@ -24,9 +26,14 @@ class BookingApiController extends Controller
      */
     public function index()
     {
-        return Booking::where('status_active', 1)
-            ->select('id','agenda', 'person', 'start', 'end', 'user_id', 'room_id', 'unit_id')
-            ->orderBy('id', 'asc')
+        return DB::table('bookings')
+            ->join('users', 'bookings.user_id','=','users.id')
+            ->join('rooms', 'bookings.room_id','=','rooms.id')
+            ->join('units', 'bookings.unit_id','=','units.id')
+            ->select('bookings.id','bookings.agenda', 'bookings.person', 'bookings.start', 
+                'bookings.end', 'users.name as user_name', 'rooms.name as room_name', 
+                'units.code as unit_code')
+            ->orderBy('bookings.id', 'asc')
             ->get();
     }
 
@@ -92,6 +99,42 @@ class BookingApiController extends Controller
         //    ->send(new bookMeetingNotification($bookings, Auth::user()->name, $unit, $room));
 
          return response()->json(['data' => $bookings, 'message' => 'Booking Succsesfully Created'],  201);
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Booking $bookings ,Request $request, $id)
+    {
+        $bookings = Booking::find($id);
+        $validator = Validator::make($request->all(), [
+            'agenda' => ['required', 'string', 'max:30'],
+            'person' => ['required', 'integer'],
+            'start' => ['required'],
+            'end' => ['required'],
+            'room_id' => ['required'],
+            'unit_id' => ['required']
+        ]);
+
+        //response error validation
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        //save to database
+        $bookings->update([
+            'agenda' => $request->agenda,
+            'person' => $request->person,
+            'start' => $request->start,
+            'end' => $request->end,
+            'room_id' => $request->room_id,
+            'unit_id' => $request->unit_id,
+        ]);
+
+        return new BookingResource($bookings);
     }
 
     public function search($query)
