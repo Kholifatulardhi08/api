@@ -30,10 +30,10 @@ class BookingApiController extends Controller
             ->join('users', 'bookings.user_id','=','users.id')
             ->join('rooms', 'bookings.room_id','=','rooms.id')
             ->join('units', 'bookings.unit_id','=','units.id')
-            ->select('bookings.id','bookings.agenda', 'bookings.person', 'bookings.start', 
-                'bookings.end', 'users.name as user_name', 'rooms.name as room_name', 
+            ->select('bookings.id','bookings.agenda', 'bookings.person', 'bookings.start',
+                'bookings.end', 'users.name as user_name', 'rooms.name as room_name',
                 'units.code as unit_code')
-            ->orderBy('bookings.id', 'asc')
+            ->orderBy('bookings.id', 'desc')
             ->get();
     }
 
