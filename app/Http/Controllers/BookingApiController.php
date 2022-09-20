@@ -36,16 +36,6 @@ class BookingApiController extends Controller
              ->orderBy('bookings.id', 'desc')
              ->where('bookings.status_active', 1)
              ->get();
-        //     return Booking::where('status_active', 1)
-        //      ->join('users', 'bookings.user_id','=','users.id')
-        //      ->join('rooms', 'bookings.room_id','=','rooms.id')
-        //      ->join('units', 'bookings.unit_id','=','units.id')
-        //      ->select('bookings.id','bookings.agenda', 'bookings.person', 'bookings.start',
-        //          'bookings.end', 'users.name as user_name', 'rooms.name as room_name',
-        //          'units.code as unit_code')
-        //     ->select('id','agenda', 'person', 'start', 'end', 'user_id', 'room_id', 'unit_id')
-        //     ->orderBy('bookings.id', 'desc')
-        //     ->get();
     }
 
     /**
