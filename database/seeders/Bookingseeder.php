@@ -19,8 +19,8 @@ class Bookingseeder extends Seeder
             [
                 'agenda' => 'Meeting 1',
                 'person' => 10,
-                'start' => new Carbon('2022-08-23 11:00:00'),
-                'end' => new Carbon('2022-08-23 12:00:00'),
+                'start' => new Carbon('2022-09-23 11:00:00'),
+                'end' => new Carbon('2022-09-23 12:00:00'),
                 'user_id' => 1,
                 'room_id' => 1,
                 'unit_id' => 1,
@@ -43,8 +43,8 @@ class Bookingseeder extends Seeder
             [
                 'agenda' => 'Meeting 3',
                 'person' => 7,
-                'start' => new Carbon('2022-08-05 09:00:00'),
-                'end' => new Carbon('2022-08-05 09:30:00'),
+                'start' => new Carbon('2022-08-22 09:00:00'),
+                'end' => new Carbon('2022-08-22 09:30:00'),
                 'user_id' => 4,
                 'room_id' => 3,
                 'unit_id' => 3,
@@ -67,8 +67,8 @@ class Bookingseeder extends Seeder
             [
                 'agenda' => 'Meeting 5',
                 'person' => 5,
-                'start' => new Carbon('2022-08-17 13:00:00'),
-                'end' => new Carbon('2022-08-17 14:00:00'),
+                'start' => new Carbon('2022-09-27 13:00:00'),
+                'end' => new Carbon('2022-09-27 14:00:00'),
                 'user_id' => 2,
                 'room_id' => 3,
                 'unit_id' => 3,
