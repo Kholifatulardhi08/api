@@ -57,22 +57,24 @@ class BookingApiController extends Controller
             'drink_id' => ['required']
         ]);
 
-        //response error validation
+        // $s = Carbon::parse($request->start);
+        // $e = Carbon::parse($request->end);
+        // //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
         // Insert to bookings table
-        $bookings = Booking::create([
-            'agenda' => $request->agenda,
-            'person' => $request->person,
-            'start' => $request->start,
-            'end' => $request->end,
-            'user_id' => $request->user_id,
-            'room_id' => $request->room_id,
-            'unit_id' => $request->unit_id,
-            'status_active' => true,
-        ]);
+            $bookings = Booking::create([
+                'agenda' => $request->agenda,
+                'person' => $request->person,
+                'start' => new Carbon($request->start),
+                'end' => new Carbon($request->end),
+                'user_id' => $request->user_id,
+                'room_id' => $request->room_id,
+                'unit_id' => $request->unit_id,
+                'status_active' => true,
+            ]);
 
         // Insert to pantries table
         Pantry::create([
