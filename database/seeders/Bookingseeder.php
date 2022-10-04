@@ -24,6 +24,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 1,
                 'room_id' => 1,
                 'unit_id' => 1,
+                'invite' => 'ardhi.kholifatul8@gmail.com, briiliandy@gmail.com',
                 'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
@@ -36,6 +37,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 2,
                 'room_id' => 2,
                 'unit_id' => 2,
+                'invite' => 'ardhi.kholifatul8@gmail.com, briiliandy@gmail.com',
                 'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
@@ -48,6 +50,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 4,
                 'room_id' => 3,
                 'unit_id' => 3,
+                'invite' => 'ardhi.kholifatul8@gmail.com, briiliandy@gmail.com',
                 'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
@@ -60,6 +63,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 4,
                 'room_id' => 3,
                 'unit_id' => 3,
+                'invite' => 'ardhi.kholifatul8@gmail.com, briiliandy@gmail.com',
                 'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
@@ -72,6 +76,7 @@ class Bookingseeder extends Seeder
                 'user_id' => 2,
                 'room_id' => 3,
                 'unit_id' => 3,
+                'invite' => 'ardhi.kholifatul8@gmail.com, briiliandy@gmail.com',
                 'status_active' => True,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')

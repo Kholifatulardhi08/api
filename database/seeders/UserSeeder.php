@@ -41,12 +41,12 @@ class UserSeeder extends Seeder
             "password" => Hash::make("password"),
             "phone_number" => "081214837896",
             "status_verified" => false,
-            "role" => "Pantry",
+            "role" => "Guest",
             "created_at" => date_create()->format('Y-m-d H:i:s'),
             "updated_at" => date_create()->format('Y-m-d H:i:s')
         ]);
             DB::table('users')->insert([
-            "name" => "User",
+            "name" => "Lydia",
             "email" => "user@gmail.com",
             "password" => Hash::make("password"),
             "phone_number" => "081225755325",
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
             "updated_at" => date_create()->format('Y-m-d H:i:s')
         ]);
             DB::table('users')->insert([
-            "name" => "Pantry",
+            "name" => "Mr. Sample",
             "email" => "pantry@gmail.com",
             "password" => Hash::make("password"),
             "phone_number" => "082207136412",

@@ -31,7 +31,7 @@ class BookingApiController extends Controller
              ->join('rooms', 'bookings.room_id','=','rooms.id')
              ->join('units', 'bookings.unit_id','=','units.id')
              ->select('bookings.id','bookings.agenda', 'bookings.person', 'bookings.start',
-                 'bookings.end', 'users.name as user_name', 'rooms.name as room_name',
+                 'bookings.end', 'bookings.invite', 'users.name as user_name', 'rooms.name as room_name',
                  'units.code as unit_code')
              ->orderBy('bookings.id', 'desc')
              ->where('bookings.status_active', 1)
@@ -54,7 +54,8 @@ class BookingApiController extends Controller
             'user_id' => ['required'],
             'room_id' => ['required'],
             'unit_id' => ['required'],
-            'drink_id' => ['required']
+            'drink_id' => ['required'],
+            'invite' => ['required']
         ]);
 
         // $s = Carbon::parse($request->start);
@@ -68,12 +69,13 @@ class BookingApiController extends Controller
             $bookings = Booking::create([
                 'agenda' => $request->agenda,
                 'person' => $request->person,
-                'start' => new Carbon($request->start),
-                'end' => new Carbon($request->end),
+                'start' => $request->start,
+                'end' => $request->end,
                 'user_id' => $request->user_id,
                 'room_id' => $request->room_id,
                 'unit_id' => $request->unit_id,
-                'status_active' => true,
+                'invite' => $request->invite,
+                'status_active' => true
             ]);
 
         // Insert to pantries table
@@ -119,7 +121,8 @@ class BookingApiController extends Controller
             'start' => ['required'],
             'end' => ['required'],
             'room_id' => ['required'],
-            'unit_id' => ['required']
+            'unit_id' => ['required'],
+            'invite' => ['required']
         ]);
 
         //response error validation
@@ -135,6 +138,7 @@ class BookingApiController extends Controller
             'end' => $request->end,
             'room_id' => $request->room_id,
             'unit_id' => $request->unit_id,
+            'invite' => $request->invite
         ]);
 
         return new BookingResource($bookings);

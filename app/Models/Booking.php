@@ -21,6 +21,7 @@ class Booking extends Model
         'user_id',
         'room_id',
         'unit_id',
+        'invite',
         'status_active'
     ];
 

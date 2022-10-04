@@ -22,6 +22,7 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('room_id');
             $table->unsignedBigInteger('unit_id');
+            $table->string('invite', 255);
             $table->boolean('status_active');
             $table->timestamps();
 
