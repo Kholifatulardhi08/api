@@ -74,7 +74,7 @@ class BookingApiController extends Controller
                 'user_id' => $request->user_id,
                 'room_id' => $request->room_id,
                 'unit_id' => $request->unit_id,
-                'invite' => $request->invite,
+                'invite' => implode(",",$request->invite),
                 'status_active' => true
             ]);
 
@@ -138,7 +138,7 @@ class BookingApiController extends Controller
             'end' => $request->end,
             'room_id' => $request->room_id,
             'unit_id' => $request->unit_id,
-            'invite' => $request->invite
+            'invite' => implode(",",$request->invite)
         ]);
 
         return new BookingResource($bookings);
