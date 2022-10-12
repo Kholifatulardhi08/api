@@ -27,8 +27,10 @@ use App\Http\Controllers\PantryApiController;
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
-    //ROUTE SHOW CALENDAR GUEST
+    //ROUTE SHOW CALENDAR && UNIT GUEST
     Route::get('/bookings', [BookingApiController::class, 'index']);
+    Route::get('/units', [UnitApiController::class, 'index']);
+
 
     //Route Middleware
     Route::group(['middleware' => ['jwt.verify']], function() {
@@ -55,7 +57,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
         Route::get('rooms/search/{query}', [RoomApiController::class, 'search']);
 
         // API UNIT
-        Route::get('/units', [UnitApiController::class, 'index']);
         Route::post('/units', [UnitApiController::class, 'store']);
         Route::put('/units/{id}', [UnitApiController::class, 'update']);
         Route::get('units/search/{query}', [UnitApiController::class, 'search']);
