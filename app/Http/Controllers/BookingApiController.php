@@ -12,6 +12,7 @@ use App\Models\Drink;
 use App\Models\Room;
 use App\Models\Unit;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -38,6 +39,24 @@ class BookingApiController extends Controller
              ->get();
     }
 
+    // Show available in day with in signage room
+    public function signage(Booking $bookings, Request $request){
+        $time = Carbon::now()->toDateTimeString();
+        $result = DB::table('bookings')
+                ->where('start', '<=', $time)
+                ->where('end', '>=', $time)
+                ->where('bookings.status_active', 1)
+                ->orderBy('bookings.id', 'desc')
+                ->get();
+        if ($result->isEmpty()){
+            $message = "Available";
+        }
+        else{
+              $message = "Not Available";
+        }
+        return response()->json(['message' => $message],  201);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -58,9 +77,6 @@ class BookingApiController extends Controller
             'invite' => ['required']
         ]);
 
-        // $s = Carbon::parse($request->start);
-        // $e = Carbon::parse($request->end);
-        // //response error validation
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
