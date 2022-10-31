@@ -57,6 +57,22 @@ class BookingApiController extends Controller
         return response()->json(['message' => $message],  201);
     }
 
+    // Show data Previus and Next signage
+    public function data(Booking $bookings )
+    {
+        $time = Carbon::now()->toDateTimeString();
+        return DB::table('bookings')
+             ->join('rooms', 'bookings.room_id','=','rooms.id')
+             ->select('bookings.id','bookings.agenda', 'bookings.start',
+                 'bookings.end', 'rooms.name as room_name')
+             ->orderBy('bookings.id', 'desc')
+             ->where('start', '<=', $time)
+             ->where('end', '<=', $time)
+             ->where('bookings.status_active', 1)
+             ->take(3)
+             ->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

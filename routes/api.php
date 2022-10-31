@@ -30,6 +30,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     //ROUTE SHOW CALENDAR && SIGNAGE
     Route::get('/bookings', [BookingApiController::class, 'index']);
     Route::get('/signage', [BookingApiController::class, 'signage']);
+    Route::get('/data', [BookingApiController::class, 'data']);
 
 
     //Route Middleware
