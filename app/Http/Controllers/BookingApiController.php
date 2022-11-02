@@ -62,14 +62,12 @@ class BookingApiController extends Controller
     {
         $time = Carbon::now()->toDateTimeString();
         return DB::table('bookings')
-             ->join('rooms', 'bookings.room_id','=','rooms.id')
-             ->select('bookings.id','bookings.agenda', 'bookings.start',
-                 'bookings.end', 'rooms.name as room_name')
-             ->orderBy('bookings.id', 'desc')
-             ->where('start', '<=', $time)
-             ->where('end', '<=', $time)
+             ->select('bookings.id','bookings.agenda', 'bookings.start', 'bookings.end')
              ->where('bookings.status_active', 1)
-             ->take(3)
+             ->groupBy('bookings.id')
+             ->having('bookings.end', '>=', $time)
+             ->orderBy('bookings.id', 'desc')
+             ->take(4)
              ->get();
     }
 
