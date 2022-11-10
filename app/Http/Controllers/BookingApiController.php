@@ -29,8 +29,8 @@ class BookingApiController extends Controller
     {
         return DB::table('bookings')
              ->join('users', 'bookings.user_id','=','users.id')
-             ->join('rooms', 'bookings.room_id','=','rooms.id')
              ->join('units', 'bookings.unit_id','=','units.id')
+             ->join('rooms', 'bookings.room_id','=','rooms.id')
              ->select('bookings.id','bookings.agenda', 'bookings.person', 'bookings.start',
                  'bookings.end', 'bookings.invite', 'users.name as user_name', 'rooms.name as room_name',
                  'units.code as unit_code')
@@ -39,10 +39,45 @@ class BookingApiController extends Controller
              ->get();
     }
 
+    // show data inProgress
+    public function inProgress(Request $request){
+        $time = Carbon::now()->toDateTimeString();
+        $result = DB::table('bookings')
+                ->select('bookings.id','bookings.agenda', 'bookings.start',
+                 'bookings.end', 'rooms.name as room_name')
+                 ->join('rooms', 'bookings.room_id','=','rooms.id')
+                 ->where('start', '<=', $time)
+                ->where('end', '>=', $time)
+                ->where('bookings.status_active', 1)
+                ->orderBy('bookings.id', 'desc')
+                ->get();
+        if ($result->isEmpty()){
+            $message = "Is Empty";
+        }
+        else{
+            $message = "In Progress";
+        }
+        return response()->json(['message' => $message ],  201);
+    }
+
     // Show available in day with in signage room
+    // DB::table('bookings')
+    // ->leftJoin('rooms', 'bookings.room_id','=','rooms.id')
+    // ->select('bookings.id','bookings.agenda','bookings.start', 'bookings.end', 'rooms.name as room_name'  )
+    // ->where('bookings.status_active', 1)
+    // ->groupBy('bookings.id')
+    // ->having('bookings.start', '>=', $time)
+    // ->having('bookings.end', '>=', $time)
+    // ->orderBy('bookings.id', 'desc')
+    // ->take(4)
+    // ->get();
+
     public function signage(Booking $bookings, Request $request){
         $time = Carbon::now()->toDateTimeString();
         $result = DB::table('bookings')
+                ->select('bookings.id','bookings.agenda', 'bookings.start',
+                 'bookings.end', 'rooms.name as room_name')
+                ->join('rooms', 'bookings.room_id','=','rooms.id')
                 ->where('start', '<=', $time)
                 ->where('end', '>=', $time)
                 ->where('bookings.status_active', 1)
@@ -52,9 +87,9 @@ class BookingApiController extends Controller
             $message = "Available";
         }
         else{
-              $message = "Not Available";
+            $message = "Not Available";
         }
-        return response()->json(['message' => $message],  201);
+        return response()->json(['message' => $message ],  201);
     }
 
     // Show data Previus and Next signage
@@ -62,13 +97,14 @@ class BookingApiController extends Controller
     {
         $time = Carbon::now()->toDateTimeString();
         return DB::table('bookings')
-             ->select('bookings.id','bookings.agenda', 'bookings.start', 'bookings.end')
-             ->where('bookings.status_active', 1)
-             ->groupBy('bookings.id')
-             ->having('bookings.end', '>=', $time)
-             ->orderBy('bookings.id', 'desc')
-             ->take(4)
-             ->get();
+        ->select('bookings.id','bookings.agenda', 'bookings.start',
+         'bookings.end', 'rooms.name as room')
+         ->join('rooms', 'bookings.room_id','=','rooms.id')
+         ->where('start', '<=', $time)
+        ->where('end', '>=', $time)
+        ->where('bookings.status_active', 1)
+        ->orderBy('bookings.id', 'desc')
+        ->get();
     }
 
     /**

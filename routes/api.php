@@ -31,6 +31,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::get('/bookings', [BookingApiController::class, 'index']);
     Route::get('/signage', [BookingApiController::class, 'signage']);
     Route::get('/data', [BookingApiController::class, 'data']);
+    Route::get('/inprogress', [BookingApiController::class, 'inProgress']);
 
 
     //Route Middleware
