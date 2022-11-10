@@ -25,8 +25,7 @@ class BookingApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Booking $bookings)
-    {
+    public function index(Booking $bookings){
         return DB::table('bookings')
              ->join('users', 'bookings.user_id','=','users.id')
              ->join('units', 'bookings.unit_id','=','units.id')
@@ -61,17 +60,6 @@ class BookingApiController extends Controller
     }
 
     // Show available in day with in signage room
-    // DB::table('bookings')
-    // ->leftJoin('rooms', 'bookings.room_id','=','rooms.id')
-    // ->select('bookings.id','bookings.agenda','bookings.start', 'bookings.end', 'rooms.name as room_name'  )
-    // ->where('bookings.status_active', 1)
-    // ->groupBy('bookings.id')
-    // ->having('bookings.start', '>=', $time)
-    // ->having('bookings.end', '>=', $time)
-    // ->orderBy('bookings.id', 'desc')
-    // ->take(4)
-    // ->get();
-
     public function signage(Booking $bookings, Request $request){
         $time = Carbon::now()->toDateTimeString();
         $result = DB::table('bookings')
@@ -93,6 +81,19 @@ class BookingApiController extends Controller
     }
 
     // Show data Previus and Next signage
+    public function upcomings(){
+      $time = Carbon::now()->toDateTimeString();
+      return DB::table('bookings')
+        ->select('bookings.id','bookings.agenda','bookings.start', 'bookings.end')
+        ->where('bookings.status_active', 1)
+        ->groupBy('bookings.id')
+        ->having('bookings.start', '>=', $time)
+        ->having('bookings.end', '>=', $time)
+        ->orderBy('bookings.id', 'desc')
+        ->get();
+    }
+
+    // show data Inprogress
     public function data(Booking $bookings )
     {
         $time = Carbon::now()->toDateTimeString();
