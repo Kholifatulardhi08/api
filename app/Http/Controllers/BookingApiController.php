@@ -89,7 +89,7 @@ class BookingApiController extends Controller
         ->groupBy('bookings.id')
         ->having('bookings.start', '>=', $time)
         ->having('bookings.end', '>=', $time)
-        ->orderBy('bookings.id', 'desc')
+        ->orderBy('bookings.start', 'asc')
         ->get();
     }
 

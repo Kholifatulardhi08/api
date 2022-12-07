@@ -54,46 +54,6 @@ class Roomseeder extends Seeder
                 'status_active' => true,
                 'created_at' => date_create()->format('Y-m-d H:i:s'),
                 'updated_at' => date_create()->format('Y-m-d H:i:s')
-            ],
-            [
-                'name' => 'Ruangan 6',
-                'code' => 'B3',
-                'capacity' => 10,
-                'status_active' => true,
-                'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s')
-            ],
-            [
-                'name' => 'Ruangan 7',
-                'code' => 'C1',
-                'capacity' => 10,
-                'status_active' => true,
-                'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s')
-            ],
-            [
-                'name' => 'Ruangan 8',
-                'code' => 'C2',
-                'capacity' => 10,
-                'status_active' => true,
-                'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s')
-            ],
-            [
-                'name' => 'Ruangan 9',
-                'code' => 'C3',
-                'capacity' => 10,
-                'status_active' => true,
-                'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s')
-            ],
-            [
-                'name' => 'Ruangan 10',
-                'code' => 'D1',
-                'capacity' => 10,
-                'status_active' => true,
-                'created_at' => date_create()->format('Y-m-d H:i:s'),
-                'updated_at' => date_create()->format('Y-m-d H:i:s')
             ]
         ];
         Room::insert($data);
